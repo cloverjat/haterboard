@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HaterBoard | Official $HATER Creator Campaign</title>
+  <meta name="description" content="The official creator campaign & leaderboard for $HATER. Post authentic hate. Get ranked. No bots. Only the Pack." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            hater: {
+              black: '#0a0a0a',
+              darker: '#050505',
+              red: '#dc2626',
+              'red-dark': '#991b1b',
+              'red-glow': '#ef4444',
+              gray: '#1a1a1a',
+              'gray-light': '#2a2a2a',
+            }
+          },
+          fontFamily: {
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .glow-red { box-shadow: 0 0 20px rgba(220, 38, 38, 0.3); }
+    .glow-red-strong { box-shadow: 0 0 30px rgba(220, 38, 38, 0.5); }
+    .gradient-border {
+      background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                  linear-gradient(135deg, #dc2626, #7f1d1d) border-box;
+      border: 1px solid transparent;
+    }
+    .score-bar { transition: width 0.6s ease; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-hater-black text-white min-h-screen">
+  <!-- Navbar -->
+  <nav class="border-b border-hater-gray sticky top-0 z-50 bg-hater-black/95 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-hater-red flex items-center justify-center text-xl font-black">🐺</div>
+        <div>
+          <div class="font-black text-lg tracking-tight">HATERBOARD</div>
+          <div class="text-xs text-red-400 font-medium">Official $HATER Campaign</div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#how" class="hover:text-red-400 transition">How it works</a>
+        <a href="#submit" class="hover:text-red-400 transition">Submit</a>
+        <a href="#leaderboard" class="hover:text-red-400 transition">Leaderboard</a>
+        <a href="http://haterwolf.com/" target="_blank" class="hover:text-red-400 transition">Website</a>
+        <a href="https://t.me/HATERWOLF" target="_blank" class="hover:text-red-400 transition">Telegram</a>
+      </div>
+      <a href="https://x.com/HATERWOLFMEME" target="_blank" class="px-4 py-2 bg-hater-red hover:bg-red-700 rounded-lg text-sm font-bold transition glow-red">
+        @HATERWOLFMEME
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-red-950/20 to-transparent pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center relative">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/50 border border-red-900 text-red-300 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        LIVE CAMPAIGN • NO BOTS • ONLY THE PACK
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4">
+        Post Authentic Hate.<br />
+        <span class="text-red-500">Get Ranked.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+        The official creator campaign for <span class="text-white font-semibold">$HATER</span>.  
+        Make real posts about the wolf pack. We score engagement authenticity.  
+        Bottled likes = <span class="text-red-400 font-bold">0 points</span>. Clean impact = climb the board.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <a href="#submit" class="px-8 py-3.5 bg-hater-red hover:bg-red-700 rounded-xl font-bold text-lg transition glow-red-strong">
+          Submit Your Tweet
+        </a>
+        <a href="#leaderboard" class="px-8 py-3.5 border border-hater-gray-light hover:border-red-800 rounded-xl font-bold text-lg transition">
+          View Leaderboard
+        </a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+        <a href="http://haterwolf.com/" target="_blank" class="hover:text-white transition">haterwolf.com</a>
+        <span>•</span>
+        <a href="https://x.com/HATERWOLFMEME" target="_blank" class="hover:text-white transition">@HATERWOLFMEME</a>
+        <span>•</span>
+        <a href="https://t.me/HATERWOLF" target="_blank" class="hover:text-white transition">t.me/HATERWOLF</a>
+        <span>•</span>
+        <span class="font-mono text-xs">CA: gLWXWsdt...xpump</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="border-y border-hater-gray bg-hater-darker">
+    <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl font-black text-red-500" id="stat-creators">12</div>
+        <div class="text-sm text-gray-500 mt-1">Creators Ranked</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-red-500" id="stat-tweets">28</div>
+        <div class="text-sm text-gray-500 mt-1">Tweets Scored</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-red-500" id="stat-points">4,820</div>
+        <div class="text-sm text-gray-500 mt-1">Total Points</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-red-500">0</div>
+        <div class="text-sm text-gray-500 mt-1">Botted Allowed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-black mb-10 text-center">How The Pack Ranks</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="gradient-border rounded-2xl p-6 bg-hater-gray">
+        <div class="text-4xl mb-4">1</div>
+        <h3 class="font-bold text-xl mb-2">Post About $HATER</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Make a real tweet mentioning $HATER, HaterWolf, the wolf pack, or pure hate on shills/rugs/influencers. Tag @HATERWOLFMEME if you want.
+        </p>
+      </div>
+      <div class="gradient-border rounded-2xl p-6 bg-hater-gray">
+        <div class="text-4xl mb-4">2</div>
+        <h3 class="font-bold text-xl mb-2">Submit the Link</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Paste your tweet URL here. Enter your X handle + basic metrics (or leave for demo scoring). We check relevance + authenticity.
+        </p>
+      </div>
+      <div class="gradient-border rounded-2xl p-6 bg-hater-gray">
+        <div class="text-4xl mb-4">3</div>
+        <h3 class="font-bold text-xl mb-2">Get Scored & Ranked</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Clean engagement earns points. Suspicious ratios, bot-like patterns, or irrelevant content = 0. Climb the leaderboard. The Pack sees everything.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 p-6 rounded-2xl bg-red-950/30 border border-red-900/50">
+      <h3 class="font-bold text-lg mb-3 text-red-400">Scoring Rules (Anti-Bot)</h3>
+      <ul class="grid md:grid-cols-2 gap-3 text-sm text-gray-300">
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Engagement rate vs follower count checked for anomalies</li>
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Extreme like/view ratios flagged as suspicious</li>
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Relevance: must mention $HATER / HaterWolf / wolf pack / hate on shills</li>
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Points = (likes×1 + RTs×3 + replies×2 + quotes×2 + views×0.01) × authenticity multiplier</li>
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Authenticity < 0.4 → 0 points (bottled)</li>
+        <li class="flex gap-2"><span class="text-red-500">▸</span> Higher quality + impact = higher rank</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Submit Form -->
+  <section id="submit" class="max-w-3xl mx-auto px-4 py-16">
+    <div class="gradient-border rounded-3xl p-8 bg-hater-gray">
+      <h2 class="text-2xl font-black mb-2">Submit Your Hate</h2>
+      <p class="text-gray-400 text-sm mb-6">Paste the tweet link. Fill metrics for accurate scoring (or use demo mode).</p>
+
+      <form id="submit-form" class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium mb-1.5 text-gray-300">Tweet URL *</label>
+          <input type="url" id="tweet-url" required placeholder="https://x.com/username/status/123456789" 
+                 class="w-full px-4 py-3 rounded-xl bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none transition" />
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium mb-1.5 text-gray-300">Your X Handle *</label>
+            <input type="text" id="x-handle" required placeholder="@yourhandle" 
+                   class="w-full px-4 py-3 rounded-xl bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1.5 text-gray-300">Your Followers (approx)</label>
+            <input type="number" id="followers" placeholder="e.g. 1500" min="0"
+                   class="w-full px-4 py-3 rounded-xl bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none transition" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1.5 text-gray-300">Tweet Text (for relevance check)</label>
+          <textarea id="tweet-text" rows="3" placeholder="Paste the text of your tweet here so we can check relevance to $HATER..."
+                    class="w-full px-4 py-3 rounded-xl bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none transition resize-none"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-xs font-medium mb-1 text-gray-400">Likes</label>
+            <input type="number" id="likes" placeholder="0" min="0" class="w-full px-3 py-2.5 rounded-lg bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1 text-gray-400">Reposts</label>
+            <input type="number" id="reposts" placeholder="0" min="0" class="w-full px-3 py-2.5 rounded-lg bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1 text-gray-400">Replies</label>
+            <input type="number" id="replies" placeholder="0" min="0" class="w-full px-3 py-2.5 rounded-lg bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1 text-gray-400">Views</label>
+            <input type="number" id="views" placeholder="0" min="0" class="w-full px-3 py-2.5 rounded-lg bg-hater-black border border-hater-gray-light focus:border-red-600 focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button type="submit" class="flex-1 py-3.5 bg-hater-red hover:bg-red-700 rounded-xl font-bold transition glow-red">
+            Score & Submit to Leaderboard
+          </button>
+        </div>
+      </form>
+
+      <!-- Result -->
+      <div id="result" class="hidden mt-8 p-6 rounded-2xl border"></div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section id="leaderboard" class="max-w-4xl mx-auto px-4 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-black">Leaderboard</h2>
+      <button onclick="resetLeaderboard()" class="text-xs text-gray-500 hover:text-red-400 transition">Reset Demo Data</button>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden border border-hater-gray">
+      <div class="bg-hater-gray px-4 py-3 grid grid-cols-12 gap-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+        <div class="col-span-1">#</div>
+        <div class="col-span-4">Creator</div>
+        <div class="col-span-2 text-right">Tweets</div>
+        <div class="col-span-2 text-right">Auth %</div>
+        <div class="col-span-3 text-right">Points</div>
+      </div>
+      <div id="leaderboard-body" class="divide-y divide-hater-gray">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-gray-600 mt-6">
+      Data stored locally in your browser for this demo. Real production version will use a shared database + live X metrics.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-hater-gray mt-8">
+    <div class="max-w-6xl mx-auto px-4 py-10 text-center">
+      <div class="text-2xl mb-2">🐺</div>
+      <div class="font-black text-lg mb-1">$HATER</div>
+      <p class="text-sm text-gray-500 max-w-md mx-auto mb-6">
+        No utility. No roadmap. No promises. Only hate — and the wolf pack that hunts in silence.
+      </p>
+      <div class="flex justify-center gap-6 text-sm">
+        <a href="http://haterwolf.com/" target="_blank" class="text-gray-400 hover:text-white transition">Website</a>
+        <a href="https://x.com/HATERWOLFMEME" target="_blank" class="text-gray-400 hover:text-white transition">X</a>
+        <a href="https://t.me/HATERWOLF" target="_blank" class="text-gray-400 hover:text-white transition">Telegram</a>
+      </div>
+      <p class="text-xs text-gray-700 mt-8">HaterBoard is an independent campaign tool built for the $HATER pack. Not financial advice. DYOR.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ========== SCORING ENGINE ==========
+    const RELEVANCE_KEYWORDS = [
+      'hater', '$hater', 'haterwolf', 'hater wolf', 'wolf pack', 'the pack',
+      'no shills', 'only hate', 'middle finger', 'rugs', 'shills', 'influencers',
+      'scammers', 'fake alpha', 'gLWXWsdt', 'haterwolfmeme'
+    ];
+
+    function checkRelevance(text) {
+      if (!text) return 0.3; // low if no text provided
+      const lower = text.toLowerCase();
+      let hits = 0;
+      RELEVANCE_KEYWORDS.forEach(kw => {
+        if (lower.includes(kw)) hits++;
+      });
+      if (hits >= 3) return 1.0;
+      if (hits === 2) return 0.85;
+      if (hits === 1) return 0.6;
+      return 0.2;
+    }
+
+    function calculateAuthenticity(likes, reposts, replies, views, followers) {
+      likes = Number(likes) || 0;
+      reposts = Number(reposts) || 0;
+      replies = Number(replies) || 0;
+      views = Number(views) || 0;
+      followers = Number(followers) || 1;
+
+      const eng = likes + reposts + replies;
+      const engRate = eng / Math.max(followers, 1);
+
+      // Suspicious patterns
+      let score = 1.0;
+
+      // Extremely high engagement rate for small accounts is often bot
+      if (followers < 500 && engRate > 0.25) score -= 0.5;
+      if (followers < 2000 && engRate > 0.15) score -= 0.35;
+      if (engRate > 0.4) score -= 0.4;
+
+      // Views vs likes (very high views + low likes can be odd, but also normal)
+      if (views > 0 && likes > 0) {
+        const likeToView = likes / views;
+        if (likeToView > 0.4) score -= 0.25; // unusually high conversion
+        if (likeToView < 0.001 && views > 10000) score -= 0.15;
+      }
+
+      // All engagement concentrated in likes with zero replies/reposts can look artificial
+      if (likes > 50 && reposts === 0 && replies === 0) score -= 0.2;
+
+      // Very new or empty looking (we don't have account age, so soft)
+      if (followers < 50 && eng > 30) score -= 0.3;
+
+      return Math.max(0, Math.min(1, score));
+    }
+
+    function calculatePoints(likes, reposts, replies, views, authenticity, relevance) {
+      likes = Number(likes) || 0;
+      reposts = Number(reposts) || 0;
+      replies = Number(replies) || 0;
+      views = Number(views) || 0;
+
+      const raw = (likes * 1) + (reposts * 3) + (replies * 2) + (views * 0.01);
+      const multiplier = authenticity * relevance;
+
+      if (authenticity < 0.4) return 0; // hard fail for botted
+      return Math.round(raw * multiplier);
+    }
+
+    // ========== DATA ==========
+    const STORAGE_KEY = 'haterboard_entries_v1';
+
+    function loadEntries() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return getDefaultEntries();
+    }
+
+    function saveEntries(entries) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    }
+
+    function getDefaultEntries() {
+      return [
+        { handle: '@wolfoftrenches', tweets: 3, auth: 0.92, points: 1240, lastUrl: '#' },
+        { handle: '@purehate_sol', tweets: 2, auth: 0.88, points: 890, lastUrl: '#' },
+        { handle: '@packhunter88', tweets: 4, auth: 0.95, points: 760, lastUrl: '#' },
+        { handle: '@no_shills_only', tweets: 1, auth: 0.81, points: 520, lastUrl: '#' },
+        { handle: '@silent_prowl', tweets: 2, auth: 0.79, points: 410, lastUrl: '#' },
+        { handle: '@middlefinger_x', tweets: 1, auth: 0.85, points: 380, lastUrl: '#' },
+        { handle: '@hater_daily', tweets: 3, auth: 0.73, points: 290, lastUrl: '#' },
+        { handle: '@rug_hater', tweets: 1, auth: 0.90, points: 210, lastUrl: '#' },
+      ];
+    }
+
+    function aggregateLeaderboard(entries) {
+      const map = {};
+      entries.forEach(e => {
+        const h = e.handle.toLowerCase().replace('@', '');
+        if (!map[h]) {
+          map[h] = { handle: e.handle.startsWith('@') ? e.handle : '@' + e.handle, tweets: 0, points: 0, authSum: 0, count: 0 };
+        }
+        map[h].tweets += 1;
+        map[h].points += e.points;
+        map[h].authSum += e.auth;
+        map[h].count += 1;
+      });
+      return Object.values(map)
+        .map(c => ({ ...c, auth: c.count ? c.authSum / c.count : 0 }))
+        .sort((a, b) => b.points - a.points);
+    }
+
+    function renderLeaderboard() {
+      const entries = loadEntries();
+      const ranked = aggregateLeaderboard(entries);
+      const body = document.getElementById('leaderboard-body');
+
+      if (ranked.length === 0) {
+        body.innerHTML = `<div class="px-4 py-12 text-center text-gray-500">No entries yet. Be the first to submit hate.</div>`;
+        return;
+      }
+
+      body.innerHTML = ranked.map((c, i) => {
+        const rankColor = i === 0 ? 'text-yellow-400' : i === 1 ? 'text-gray-300' : i === 2 ? 'text-amber-600' : 'text-gray-500';
+        const authPct = Math.round(c.auth * 100);
+        const authColor = authPct >= 80 ? 'text-green-400' : authPct >= 50 ? 'text-yellow-400' : 'text-red-400';
+        return `
+          <div class="px-4 py-4 grid grid-cols-12 gap-2 items-center hover:bg-hater-gray/50 transition">
+            <div class="col-span-1 font-black ${rankColor}">${i + 1}</div>
+            <div class="col-span-4 font-semibold truncate">
+              <a href="https://x.com/${c.handle.replace('@','')}" target="_blank" class="hover:text-red-400 transition">${c.handle}</a>
+            </div>
+            <div class="col-span-2 text-right text-gray-400">${c.tweets}</div>
+            <div class="col-span-2 text-right ${authColor}">${authPct}%</div>
+            <div class="col-span-3 text-right font-bold text-red-400">${c.points.toLocaleString()}</div>
+          </div>
+        `;
+      }).join('');
+
+      // update stats
+      document.getElementById('stat-creators').textContent = ranked.length;
+      document.getElementById('stat-tweets').textContent = entries.length;
+      document.getElementById('stat-points').textContent = ranked.reduce((s, c) => s + c.points, 0).toLocaleString();
+    }
+
+    function resetLeaderboard() {
+      if (confirm('Reset to default demo leaderboard?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderLeaderboard();
+      }
+    }
+
+    // ========== FORM ==========
+    document.getElementById('submit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const url = document.getElementById('tweet-url').value.trim();
+      let handle = document.getElementById('x-handle').value.trim();
+      if (!handle.startsWith('@')) handle = '@' + handle;
+      const followers = document.getElementById('followers').value;
+      const text = document.getElementById('tweet-text').value.trim();
+      const likes = document.getElementById('likes').value || 0;
+      const reposts = document.getElementById('reposts').value || 0;
+      const replies = document.getElementById('replies').value || 0;
+      const views = document.getElementById('views').value || 0;
+
+      const relevance = checkRelevance(text);
+      const authenticity = calculateAuthenticity(likes, reposts, replies, views, followers);
+      const points = calculatePoints(likes, reposts, replies, views, authenticity, relevance);
+
+      // Save entry
+      const entries = loadEntries();
+      entries.push({
+        handle,
+        url,
+        text,
+        likes: Number(likes),
+        reposts: Number(reposts),
+        replies: Number(replies),
+        views: Number(views),
+        followers: Number(followers) || 0,
+        relevance,
+        auth: authenticity,
+        points,
+        ts: Date.now()
+      });
+      saveEntries(entries);
+      renderLeaderboard();
+
+      // Show result
+      const result = document.getElementById('result');
+      result.classList.remove('hidden');
+
+      const authPct = Math.round(authenticity * 100);
+      const relPct = Math.round(relevance * 100);
+
+      if (points === 0) {
+        result.className = 'mt-8 p-6 rounded-2xl border border-red-800 bg-red-950/40';
+        result.innerHTML = `
+          <div class="text-2xl font-black text-red-400 mb-2">0 POINTS — FLAGGED</div>
+          <p class="text-gray-300 mb-4">This submission was scored as low authenticity or low relevance. Bottled or irrelevant content earns nothing.</p>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>Authenticity: <span class="font-bold text-red-400">${authPct}%</span></div>
+            <div>Relevance: <span class="font-bold">${relPct}%</span></div>
+          </div>
+          <p class="text-xs text-gray-500 mt-4">Tip: Provide real metrics + tweet text that clearly mentions $HATER / the pack / hate on shills.</p>
+        `;
+      } else {
+        result.className = 'mt-8 p-6 rounded-2xl border border-green-800 bg-green-950/30';
+        result.innerHTML = `
+          <div class="text-2xl font-black text-green-400 mb-2">+${points.toLocaleString()} POINTS</div>
+          <p class="text-gray-300 mb-4">Clean engagement detected. You have been added to the leaderboard.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-4">
+            <div>Authenticity<br><span class="font-bold text-lg ${authPct >= 70 ? 'text-green-400' : 'text-yellow-400'}">${authPct}%</span></div>
+            <div>Relevance<br><span class="font-bold text-lg">${relPct}%</span></div>
+            <div>Raw Engagement<br><span class="font-bold text-lg">${(Number(likes)+Number(reposts)+Number(replies)).toLocaleString()}</span></div>
+            <div>Final Points<br><span class="font-bold text-lg text-red-400">${points.toLocaleString()}</span></div>
+          </div>
+          <a href="#leaderboard" class="inline-block text-sm text-red-400 hover:underline">View your rank →</a>
+        `;
+      }
+
+      // scroll to result
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Init
+    renderLeaderboard();
+  </script>
+</body>
+</html>
