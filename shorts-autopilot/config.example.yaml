@@ -1,0 +1,89 @@
+# Copy to config.yaml and edit.  Everything here is safe to commit (no secrets).
+
+channel:
+  name: "Blocky Tales"
+  language: "en"
+  # Locked visual identity. One of: roblox | flat_2d | pixar_3d  (see autopilot/styles.py)
+  # Once the first video posts, the style is locked in state/channel.json so every
+  # upload keeps the same look. Use `python -m autopilot run --force-style` to change it.
+  style: roblox
+  # Topics/storylines the AI may pick from. Leave empty ([]) to let it choose ANY topic
+  # that is trending in the competitor scan.
+  topics:
+    - "revenge / karma stories"
+    - "rich vs poor"
+    - "school drama"
+    - "mystery and horror"
+    - "survival challenges"
+    - "funny fails"
+  audience: "teens and young adults, 13+"
+
+schedule:
+  # Post every N hours (12 = twice a day, 9 = ~2.7x a day). Used by `tick` and `daemon`.
+  interval_hours: 12
+  # Allowed posting window in UTC hours (inclusive start, exclusive end). [0, 24] = any time.
+  window_utc: [0, 24]
+
+scout:
+  # Search queries used to find competitor Shorts (YouTube Data API).
+  queries:
+    - "roblox story shorts"
+    - "animated story shorts"
+    - "3d animation story #shorts"
+  # Specific competitor channel IDs to always watch (UC...). Optional.
+  competitor_channels: []
+  lookback_days: 7
+  max_results_per_query: 25
+  # Optional TikTok data. TikTok has no public competitor API; either:
+  #  - point this at a JSON file you export / curate: [{"title","views","likes","comments","hours_since_post"}]
+  #  - or enable the Research API (approved researchers only) below.
+  tiktok_trends_file: ""
+  tiktok_research_api: false
+
+ideas:
+  candidates: 8          # ideas generated per run
+  min_virality: 62       # 0-100; below this the run regenerates once, then posts the best anyway if allow_below_threshold
+  allow_below_threshold: false
+
+script:
+  target_seconds: 45
+  scenes: 7
+
+llm:
+  model: "claude-opus-5-5"
+  effort: "high"
+
+visuals:
+  # openai  -> OpenAI Images API (needs OPENAI_API_KEY)
+  # placeholder -> offline Pillow frames (for testing the pipeline without credits)
+  provider: placeholder
+  openai_model: "gpt-image-1"
+
+voice:
+  # elevenlabs -> ElevenLabs TTS (needs ELEVENLABS_API_KEY + voice_id)
+  # espeak     -> local espeak-ng (free, robotic)
+  # silent     -> no voice, captions only (testing)
+  provider: silent
+  elevenlabs_voice_id: ""
+  elevenlabs_model: "eleven_multilingual_v2"
+
+render:
+  width: 1080
+  height: 1920
+  fps: 30
+  # Optional royalty-free background music folder (mp3/wav). Random track per video.
+  music_dir: "assets/music"
+  music_volume: 0.12
+
+publish:
+  dry_run: true            # true = render only, never upload. Flip to false when ready.
+  youtube:
+    enabled: true
+    privacy: "public"      # public | unlisted | private
+    category_id: "24"      # Entertainment
+    made_for_kids: false
+  tiktok:
+    enabled: true
+    # Unaudited TikTok apps can only post SELF_ONLY (private). After your app passes
+    # TikTok's audit, set PUBLIC_TO_EVERYONE.
+    privacy: "SELF_ONLY"
